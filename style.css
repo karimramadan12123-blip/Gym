@@ -1,0 +1,196 @@
+:root {
+  --bg: #f4f6f8;
+  --surface: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --accent: #16a34a;
+  --accent-text: #ffffff;
+  --border: #e5e7eb;
+  --shadow: 0 10px 30px rgba(17, 24, 39, 0.14);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b1020;
+    --surface: #161d30;
+    --text: #f3f4f6;
+    --muted: #9ca3af;
+    --border: #263049;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Tahoma, "Noto Naskh Arabic", Arial, sans-serif;
+  overscroll-behavior: none;
+}
+
+[hidden] { display: none !important; }
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  border: 0;
+  background: none;
+}
+
+.screen {
+  position: fixed;
+  inset: 0;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+/* ---------- Splash ---------- */
+#splash {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: #111827;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  transition: opacity .35s ease, visibility .35s ease;
+}
+#splash img { border-radius: 22px; }
+#splash h1 { margin: 0; font-size: 1.4rem; letter-spacing: .5px; direction: ltr; }
+#splash.hide { opacity: 0; visibility: hidden; }
+
+/* ---------- Home ---------- */
+#home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 16px;
+}
+
+.card-btn {
+  width: 100%;
+  max-width: 560px;
+  padding: 0;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  line-height: 0;
+  transition: transform .15s ease;
+}
+.card-btn:active { transform: scale(.985); }
+
+#cardImg {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 78vh;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.icon-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+}
+.icon-btn:active { background: rgba(127, 127, 127, .18); }
+
+#settingsBtn {
+  position: absolute;
+  top: calc(env(safe-area-inset-top) + 10px);
+  inset-inline-start: 10px;
+}
+
+/* ---------- Viewer ---------- */
+.viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: #ffffff; /* خلفية بيضاء لتسهيل مسح الباركود/QR */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.viewer-stage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+}
+#viewerImg {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.viewer-close {
+  position: absolute;
+  top: calc(env(safe-area-inset-top) + 10px);
+  inset-inline-start: 10px;
+  z-index: 2;
+  color: #111;
+  background: rgba(0, 0, 0, .08);
+}
+
+/* ---------- Settings ---------- */
+.settings { background: var(--bg); display: flex; flex-direction: column; }
+.settings-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+}
+.settings-header h2 { margin: 0; font-size: 1.25rem; }
+
+.settings-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 560px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.big-btn {
+  width: 100%;
+  min-height: 64px;
+  padding: 14px 18px;
+  border-radius: 16px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.big-btn:active { transform: scale(.985); }
+.big-btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+
+.status {
+  min-height: 1.4em;
+  margin: 4px 0 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: .95rem;
+}
